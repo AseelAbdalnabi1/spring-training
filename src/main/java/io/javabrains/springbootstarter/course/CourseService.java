@@ -1,4 +1,4 @@
-package course;
+package io.javabrains.springbootstarter.course;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,9 +13,10 @@ public class CourseService {
     @Autowired
     private CourseRepository courseRepository;
 
-    public List<Course> getAllCourses() {
+    public List<Course> getAllCourses(String topicId) {
         List<Course> courses = new ArrayList<>();
-        courseRepository.findAll().forEach(courses::add);
+        courseRepository.findByTopicId(topicId)
+                .forEach(courses::add);
         return courses;
     }
     public Optional<Course> getCourse(String id){
